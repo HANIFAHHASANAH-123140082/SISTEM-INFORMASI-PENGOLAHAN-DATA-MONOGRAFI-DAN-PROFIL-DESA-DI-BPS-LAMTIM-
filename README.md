@@ -83,26 +83,28 @@ Bab yang tidak memiliki data akan otomatis ditampilkan sebagai kalimat deskripti
 Gunakan tombol edit dan hapus pada halaman daftar desa untuk menyunting atau menghapus data desa yang sudah tersimpan.
 
 ## Struktur Project
+
+```
 sistem-monografi-desa/
 ├── desa/
-│ ├── models.py # Struktur basis data (6 entitas)
-│ ├── views.py # Logika aplikasi
-│ ├── forms.py # Formulir input data
-│ ├── document_generator.py # Generator dokumen Word otomatis
-│ ├── kuesioner_parser.py # Pembaca berkas kuesioner (.docx/.pdf)
-│ ├── validators.py # Validasi data (opsional)
-│ ├── templates/desa/ # Tampilan halaman web
-│ ├── management/commands/ # Script pengisian data master
-│ └── assets/ # Logo dan gambar sampul
-├── monografi_desa/ # Konfigurasi project Django
-├── requirements.txt # Daftar library yang dibutuhkan
+│   ├── models.py                 # Struktur basis data
+│   ├── views.py                  # Logika aplikasi
+│   ├── forms.py                  # Formulir input data
+│   ├── document_generator.py     # Generator dokumen Word otomatis
+│   ├── kuesioner_parser.py       # Pembaca berkas kuesioner (.docx/.pdf)
+│   ├── templates/desa/           # Tampilan halaman web
+│   ├── management/commands/      # Script pengisian data master
+│   └── assets/                   # Logo dan gambar sampul
+├── monografi_desa/                # Konfigurasi project Django
+├── requirements.txt                # Daftar library yang dibutuhkan
 └── manage.py
+```
 
 
 ## Konteks Pengembangan
 
 Sistem ini dikembangkan sebagai bagian dari Praktek Kerja Lapangan (Mata Kuliah IF4004) mahasiswa Program Studi Teknik Informatika, Institut Teknologi Sumatera, yang dilaksanakan di Badan Pusat Statistik Kabupaten Lampung Timur.
 
-**Penulis:** Hanifah Hasanah (123140082)
-**Instansi:** Badan Pusat Statistik Kabupaten Lampung Timur
-**Periode:** Juni – Agustus 2026
+- **Penulis:** Hanifah Hasanah (123140082)
+- **Instansi:** Badan Pusat Statistik Kabupaten Lampung Timur
+- **Periode:** Juni – Agustus 2026
