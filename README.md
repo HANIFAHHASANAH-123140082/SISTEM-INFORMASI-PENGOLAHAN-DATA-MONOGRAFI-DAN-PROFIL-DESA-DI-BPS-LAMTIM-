@@ -29,8 +29,10 @@ Sistem ini dibangun untuk menjawab permasalahan proses penyusunan dokumen Monogr
 ### Langkah Instalasi
 
 1. Clone repository ini
+```bash
 git clone https://github.com/HANIFAHHASANAH-123140082/SISTEM-INFORMASI-PENGOLAHAN-DATA-MONOGRAFI-DAN-PROFIL-DESA-DI-BPS-LAMTIM-.git
 cd SISTEM-INFORMASI-PENGOLAHAN-DATA-MONOGRAFI-DAN-PROFIL-DESA-DI-BPS-LAMTIM-
+```
 
 2. Buat dan aktifkan virtual environment
 python -m venv venv
