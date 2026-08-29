@@ -1,0 +1,84 @@
+{% extends 'desa/base.html' %}
+{% block content %}
+<div class="page-card">
+    <h2 class="page-title">Input Jawaban Kuesioner — {{ desa.nama_desa }}</h2>
+
+    <p class="text-muted small mb-2">
+        <i class="bi bi-info-circle"></i>
+        Kuesioner berisi 143 item pertanyaan. Gunakan tombol panah atas/bawah pada keyboard untuk berpindah antar kolom jawaban.
+    </p>
+
+    <div class="mb-3">
+    <a href="{% url 'upload_kuesioner' desa.id %}" class="btn btn-outline-primary btn-sm">
+        <i class="bi bi-upload"></i> Upload Berkas Kuesioner untuk Isi Otomatis
+    </a>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <table class="table table-bps table-bordered align-middle">
+        <thead>
+            <tr>
+                <th style="width:50px">No</th>
+                <th>Pertanyaan</th>
+                <th style="width:220px">Pilihan Jawaban</th>
+                <th style="width:200px">Jawaban</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in daftar_item_jawaban %}
+        <tr>
+            <td class="text-center">{{ forloop.counter }}</td>
+            <td>
+                {{ row.item.pertanyaan }}
+                {% if row.item.satuan %}<small class="text-muted">({{ row.item.satuan }})</small>{% endif %}
+            </td>
+            <td class="text-muted small">
+                {% if row.item.pilihan_jawaban %}
+                    {{ row.item.pilihan_jawaban }}
+                {% else %}
+                    &mdash;
+                {% endif %}
+            </td>
+            <td>
+                <input
+                    type="text"
+                    name="item_{{ row.item.id }}"
+                    class="form-control kuesioner-field"
+                    value="{{ row.nilai|default_if_none:'' }}"
+                    autocomplete="off">
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+        </table>
+        <button type="submit" class="btn btn-bps-primary">Simpan Semua Jawaban</button>
+    </form>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var daftarField = Array.from(document.querySelectorAll('.kuesioner-field'));
+
+    daftarField.forEach(function (field, index) {
+        field.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                var berikutnya = daftarField[index + 1];
+                if (berikutnya) {
+                    berikutnya.focus();
+                    berikutnya.select();
+                }
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                var sebelumnya = daftarField[index - 1];
+                if (sebelumnya) {
+                    sebelumnya.focus();
+                    sebelumnya.select();
+                }
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

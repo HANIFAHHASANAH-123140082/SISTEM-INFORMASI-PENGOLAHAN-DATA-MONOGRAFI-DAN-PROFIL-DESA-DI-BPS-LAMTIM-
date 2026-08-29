@@ -1,0 +1,46 @@
+{% extends 'desa/base.html' %}
+{% block content %}
+<div class="page-card">
+    <h2 class="page-title">Tambah Desa Baru</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-bps-primary">Simpan &amp; Lanjut Input Kuesioner</button>
+    </form>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Ambil semua kolom input di dalam form ini, KECUALI textarea (teks panjang)
+    // dan tombol/hidden field, supaya panah atas-bawah aman dipakai.
+    var daftarField = Array.from(
+        document.querySelectorAll(
+            'form input:not([type=hidden]):not([type=submit]):not([type=button]), form select'
+        )
+    );
+
+    daftarField.forEach(function (field, index) {
+        field.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                var berikutnya = daftarField[index + 1];
+                if (berikutnya) {
+                    berikutnya.focus();
+                    if (berikutnya.tagName === 'INPUT' && typeof berikutnya.select === 'function') {
+                        berikutnya.select();
+                    }
+                }
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                var sebelumnya = daftarField[index - 1];
+                if (sebelumnya) {
+                    sebelumnya.focus();
+                    if (sebelumnya.tagName === 'INPUT' && typeof sebelumnya.select === 'function') {
+                        sebelumnya.select();
+                    }
+                }
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'desa/base.html' %}
+{% block content %}
+<div class="page-card">
+    <h2 class="page-title">Upload Kuesioner — {{ desa.nama_desa }}</h2>
+    <p class="page-subtitle">
+        Unggah file kuesioner yang sudah terisi untuk mengisi jawaban secara otomatis,
+        tanpa perlu input satu per satu.
+    </p>
+
+    {% if error %}
+    <div class="alert alert-warning">{{ error }}</div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data" class="mb-4">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Pilih file kuesioner (.docx atau .pdf)</label>
+            <input type="file" name="file_kuesioner" class="form-control" accept=".docx,.pdf" required>
+        </div>
+        <button type="submit" class="btn btn-bps-primary">
+            <i class="bi bi-upload"></i> Upload &amp; Isi Otomatis
+        </button>
+        <a href="{% url 'input_jawaban' desa.id %}" class="btn btn-outline-secondary">Isi Manual Saja</a>
+    </form>
+
+    <hr>
+
+    <h6>Format file yang didukung:</h6>
+    <ul class="text-muted small">
+        <li><strong>.docx</strong> — file Word berisi tabel dengan kolom nomor item di kolom pertama dan jawaban di kolom terakhir</li>
+        <li><strong>.pdf</strong> — hasil export dari Word yang masih mempertahankan struktur tabel (bukan hasil scan/foto)</li>
+    </ul>
+    <p class="text-muted small">
+        Setelah file diproses, kamu akan diarahkan ke halaman input jawaban untuk memeriksa dan mengoreksi hasilnya sebelum disimpan final.
+    </p>
+</div>
+{% endblock %}

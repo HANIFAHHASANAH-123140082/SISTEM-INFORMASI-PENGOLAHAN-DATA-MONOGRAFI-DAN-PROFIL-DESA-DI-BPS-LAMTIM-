@@ -1,0 +1,18 @@
+﻿# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Database (berisi data desa asli - jangan ikut public)
+db.sqlite3
+
+# File media hasil upload (foto kepala desa, peta wilayah, cover hasil generate)
+media/
+
+# File konfigurasi lokal (kalau ada)
+.env
+
+# VS Code settings (opsional)
+.vscode/
